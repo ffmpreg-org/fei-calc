@@ -1,6 +1,7 @@
 {
 	"app": {
-		"name": "FEI Calc"
+		"name": "FEI Calc",
+		"description": "Zástupný popis pro FEI Calc."
 	},
 	"sidebar": {
 		"showSidebar": "Zobrazit Sidebar (také kliknutím na okraj)",

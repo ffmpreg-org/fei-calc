@@ -6,13 +6,7 @@ const props = defineProps<{
 	title?: string | null
 }>()
 
-const { t } = useI18n()
-
-useHead({
-	title: computed(() =>
-		props.title ? `${props.title} · ${t("app.name")}` : t("app.name")
-	)
-})
+usePageSeo(() => props.title)
 </script>
 
 <template>

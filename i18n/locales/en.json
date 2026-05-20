@@ -1,6 +1,7 @@
 {
 	"app": {
-		"name": "FEI Calc"
+		"name": "FEI Calc",
+		"description": "Placeholder description for FEI Calc."
 	},
 	"sidebar": {
 		"showSidebar": "Show Sidebar (also by clicking on the edge)",
