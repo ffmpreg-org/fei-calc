@@ -1,4 +1,7 @@
 {
+	"app": {
+		"name": "FEI Calc"
+	},
 	"sidebar": {
 		"showSidebar": "Show Sidebar (also by clicking on the edge)",
 		"options": "Options",

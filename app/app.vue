@@ -2,6 +2,21 @@
 import { useLocalStorage } from "@vueuse/core"
 import { cs, en } from "@nuxt/ui/locale"
 
+const appConfig = useAppConfig()
+const colorMode = useColorMode()
+
+useHead({
+	meta: computed(() => [
+		{
+			name: "theme-color",
+			content:
+				colorMode.value === "dark"
+					? appConfig.app.themeColor.dark
+					: appConfig.app.themeColor.light
+		}
+	])
+})
+
 const { locale, t } = useI18n()
 const uiLocales = { cs, en }
 const uiLocale = computed(() => uiLocales[locale.value])

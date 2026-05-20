@@ -8,6 +8,22 @@ export default defineNuxtConfig({
 
 	app: {
 		head: {
+			title: "FEI Calc",
+			meta: [
+				{ charset: "utf-8" },
+				{ name: "viewport", content: "width=device-width, initial-scale=1" },
+				{
+					name: "theme-color",
+					content: "#14b8a6",
+					media: "(prefers-color-scheme: light)"
+				},
+				{
+					name: "theme-color",
+					content: "#134e4a",
+					media: "(prefers-color-scheme: dark)"
+				},
+				{ name: "color-scheme", content: "light dark" }
+			],
 			link: [{ rel: "icon", type: "image/svg+xml", href: "/favicon.svg" }]
 		}
 	},

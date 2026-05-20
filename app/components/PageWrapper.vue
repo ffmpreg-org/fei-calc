@@ -5,6 +5,14 @@ const props = defineProps<{
 	breadcrumbs?: BreadcrumbItem[]
 	title?: string | null
 }>()
+
+const { t } = useI18n()
+
+useHead({
+	title: computed(() =>
+		props.title ? `${props.title} · ${t("app.name")}` : t("app.name")
+	)
+})
 </script>
 
 <template>
