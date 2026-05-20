@@ -4,5 +4,10 @@ import eslintConfigPrettier from "eslint-config-prettier/flat"
 
 export default withNuxt(
 	// Your custom configs here
-	eslintConfigPrettier
+	eslintConfigPrettier,
+	{
+		rules: {
+			"@typescript-eslint/no-unused-vars": ["warn"],
+		}
+	}
 )
