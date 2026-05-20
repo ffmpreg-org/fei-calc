@@ -43,5 +43,5 @@ export default defineNuxtConfig({
 				name: "English"
 			}
 		]
-	},
+	}
 })

@@ -129,10 +129,10 @@ const navMenuItems = computed(() => [
 												uiLocales.en,
 												uiLocales.cs
 											]"
+											class="min-w-52"
 											@update:model-value="
 												handleLocaleChange($event)
 											"
-											class="min-w-52"
 										/>
 										<p class="text-sm text-muted">
 											{{ t("sidebar.language") }}
