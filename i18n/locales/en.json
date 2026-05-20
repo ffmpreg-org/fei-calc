@@ -1,12 +1,6 @@
 {
-	"test": "testing",
 	"sidebar": {
 		"showSidebar": "Show Sidebar (also by clicking on the edge)",
-		"home": "Home",
-		"to": "TO",
-		"to-1": "TO I",
-		"to-2": "TO II",
-		"general": "General",
 		"options": "Options",
 		"theme": {
 			"label": "App Theme",
@@ -15,5 +9,12 @@
 			"system": "System Theme"
 		},
 		"language": "App Language"
+	},
+	"pages": {
+		"home": "Home",
+		"to": "TO",
+		"to-1": "TO I",
+		"to-2": "TO II",
+		"general": "General"
 	}
 }

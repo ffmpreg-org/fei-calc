@@ -19,26 +19,27 @@ function handleLocaleChange(value) {
 
 const navMenuItems = computed(() => [
 	{
-		label: t("sidebar.home"),
+		label: t("pages.home"),
 		icon: "i-lucide-home",
 		href: "/"
 	},
 	{
-		label: t("sidebar.to"),
+		label: t("pages.to"),
 		icon: "i-lucide-book-text",
+		href: "/to",
 		children: [
 			{
-				label: t("sidebar.to-1"),
-				href: "/to-1"
+				label: t("pages.to-1"),
+				href: "/to/to-1"
 			},
 			{
-				label: t("sidebar.to-2"),
-				href: "/to-2"
+				label: t("pages.to-2"),
+				href: "/to/to-2"
 			}
 		]
 	},
 	{
-		label: t("sidebar.general"),
+		label: t("pages.general"),
 		icon: "i-lucide-calculator",
 		href: "/general"
 	}

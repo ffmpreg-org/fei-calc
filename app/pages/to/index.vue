@@ -4,7 +4,7 @@ const { t } = useI18n()
 
 <template>
 	<PageWrapper
-		:title="t('pages.home')"
+		:title="t('pages.to')"
 		:breadcrumbs="[{ to: '/', icon: 'i-lucide-home' }]"
 	>
 	</PageWrapper>

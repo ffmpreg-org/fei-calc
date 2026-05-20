@@ -10,3 +10,10 @@
 	--ui-bg-elevated: oklch(22.4% 0.006 286.033);
 	--ui-bg: oklch(18% 0.006 285.885);
 }
+
+/* Hack around not getting a good active state for breadcrumbs */
+[aria-label="breadcrumb"] {
+	[data-slot="link"].text-primary {
+		@apply bg-primary-500/20 p-2 rounded-full;
+	}
+}
