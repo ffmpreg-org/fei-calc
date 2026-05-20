@@ -1,8 +1,9 @@
 <script setup>
 import { useLocalStorage } from "@vueuse/core"
-import * as uiLocales from "@nuxt/ui/locale"
+import { cs, en } from "@nuxt/ui/locale"
 
 const { locale, t } = useI18n()
+const uiLocales = { cs, en }
 const uiLocale = computed(() => uiLocales[locale.value])
 const switchLocalePath = useSwitchLocalePath()
 const router = useRouter()
