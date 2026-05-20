@@ -1,31 +1,31 @@
 {
-  "name": "fei-calc",
-  "private": true,
-  "type": "module",
-  "scripts": {
-    "build": "nuxt build",
-    "dev": "nuxt dev",
-    "preview": "nuxt preview",
-    "postinstall": "nuxt prepare",
-    "lint": "eslint .",
-    "format": "prettier --write .",
-    "fix": "eslint . --fix && prettier --write .",
-    "typecheck": "nuxt typecheck"
-  },
-  "dependencies": {
-    "@iconify-json/lucide": "^1.2.108",
-    "@iconify-json/simple-icons": "^1.2.83",
-    "@nuxt/ui": "^4.7.1",
-    "nuxt": "^4.4.6",
-    "tailwindcss": "^4.3.0"
-  },
-  "devDependencies": {
-    "@nuxt/eslint": "^1.15.2",
-    "eslint": "^10.4.0",
-    "eslint-config-prettier": "^10.1.8",
-    "prettier": "3.8.3",
-    "typescript": "^6.0.3",
-    "vue-tsc": "^3.3.0"
-  },
-  "packageManager": "pnpm@10.33.4"
+	"name": "fei-calc",
+	"private": true,
+	"type": "module",
+	"scripts": {
+		"build": "nuxt build",
+		"dev": "nuxt dev",
+		"preview": "nuxt preview",
+		"postinstall": "nuxt prepare",
+		"lint": "eslint .",
+		"format": "prettier --write .",
+		"fix": "eslint . --fix && prettier --write .",
+		"typecheck": "nuxt typecheck"
+	},
+	"dependencies": {
+		"@iconify-json/lucide": "^1.2.108",
+		"@iconify-json/simple-icons": "^1.2.83",
+		"@nuxt/ui": "^4.7.1",
+		"nuxt": "^4.4.6",
+		"tailwindcss": "^4.3.0"
+	},
+	"devDependencies": {
+		"@nuxt/eslint": "^1.15.2",
+		"eslint": "^10.4.0",
+		"eslint-config-prettier": "^10.1.8",
+		"prettier": "3.8.3",
+		"typescript": "^6.0.3",
+		"vue-tsc": "^3.3.0"
+	},
+	"packageManager": "pnpm@10.33.4"
 }
