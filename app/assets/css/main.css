@@ -5,3 +5,8 @@
 	--font-sans: "Geist", sans-serif;
 	--font-mono: "Geist Mono", monospace;
 }
+
+.dark {
+	--ui-bg-elevated: oklch(22.4% 0.006 286.033);
+	--ui-bg: oklch(18% 0.006 285.885);
+}
