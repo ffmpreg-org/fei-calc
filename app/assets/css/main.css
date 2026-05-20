@@ -17,3 +17,14 @@
 		@apply bg-primary-500/20 p-2 rounded-full;
 	}
 }
+
+/* Hack around not getting a good active state for navigation menu while in icon collapse mode */
+[data-reka-navigation-menu] {
+	[data-slot="link"].text-primary {
+		@apply before:bg-primary-500/20;
+	}
+}
+
+[data-side="left"][data-slot="content"] {
+	@apply max-w-72 min-w-52;
+}

@@ -6,18 +6,40 @@ const props = defineProps<{
 	title?: string | null
 }>()
 
+const { t } = useI18n()
+const { toggleSidebar, isSidebarOpen } = useSidebar()
+
+const sidebarToggleLabel = computed(() =>
+	isSidebarOpen.value ? t("sidebar.close") : t("sidebar.open")
+)
+
 usePageSeo(() => props.title)
 </script>
 
 <template>
 	<div class="flex flex-col gap-y-4 min-h-full p-4 w-full">
 		<div class="flex items-center justify-between gap-3 w-full">
-			<div class="flex items-center gap-2">
+			<div class="flex items-center gap-2 min-w-0">
 				<slot name="breadcrumbs-leading" />
 				<UBreadcrumb :items="breadcrumbs" />
 				<slot name="breadcrumbs" />
 			</div>
-			<slot name="breadcrumbs-trailing" />
+			<div class="flex items-center gap-2 shrink-0">
+				<slot name="breadcrumbs-trailing" />
+				<UTooltip :text="sidebarToggleLabel">
+					<UButton
+						variant="subtle"
+						color="neutral"
+						:icon="
+							isSidebarOpen
+								? 'i-lucide-panel-left-close'
+								: 'i-lucide-panel-left-open'
+						"
+						:aria-label="sidebarToggleLabel"
+						@click="toggleSidebar"
+					/>
+				</UTooltip>
+			</div>
 		</div>
 		<div
 			class="flex items-start lg:items-center justify-between gap-3 w-full flex-col lg:flex-row"

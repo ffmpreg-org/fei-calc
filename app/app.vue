@@ -1,5 +1,4 @@
 <script setup>
-import { useLocalStorage } from "@vueuse/core"
 import { cs, en } from "@nuxt/ui/locale"
 
 const appConfig = useAppConfig()
@@ -23,7 +22,7 @@ const uiLocale = computed(() => uiLocales[locale.value])
 const switchLocalePath = useSwitchLocalePath()
 const router = useRouter()
 
-const isSidebarOpen = useLocalStorage("isSidebarOpen", true)
+const { isSidebarOpen } = useSidebar()
 
 function handleSidebarOpenChange(value) {
 	isSidebarOpen.value = value
@@ -73,7 +72,6 @@ const navMenuItems = computed(() => [
 						'--sidebar-width-icon': '5.5rem'
 					}"
 					:rail="true"
-					:ui="{}"
 				>
 					<template #default>
 						<UNavigationMenu
@@ -83,7 +81,10 @@ const navMenuItems = computed(() => [
 							:ui="{
 								link: 'data-active:before:bg-primary-500/20 px-4 py-3 gap-2 min-w-14 overflow-hidden font-medium data-active:font-semibold',
 								linkLeadingIcon: 'size-6',
-								linkLabel: 'text-base'
+								linkLabel: 'text-base',
+								linkTrailing:
+									'size-4 scale-200 items-center justify-center data-active:hover:bg-primary-400/10 hover:bg-neutral-400/10 rounded-sm',
+								linkTrailingIcon: 'size-2'
 							}"
 							:popover="true"
 							:arrow="true"
@@ -111,7 +112,7 @@ const navMenuItems = computed(() => [
 							</UButton>
 							<template #content>
 								<div class="flex gap-3 flex-col">
-									<div class="flex items-center gap-2">
+									<!-- <div class="flex items-center gap-2">
 										<USwitch
 											v-model="isSidebarOpen"
 											@update:model-value="
@@ -121,7 +122,7 @@ const navMenuItems = computed(() => [
 										<p class="text-sm text-muted">
 											{{ t("sidebar.showSidebar") }}
 										</p>
-									</div>
+									</div> -->
 
 									<div class="flex items-center gap-2">
 										<!-- <USelect

@@ -4,6 +4,8 @@
 		"description": "Zástupný popis pro FEI Calc."
 	},
 	"sidebar": {
+		"open": "Otevřít postranní panel",
+		"close": "Zavřít postranní panel",
 		"showSidebar": "Zobrazit Sidebar (také kliknutím na okraj)",
 		"options": "Možnosti",
 		"theme": {

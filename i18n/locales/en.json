@@ -4,6 +4,8 @@
 		"description": "Placeholder description for FEI Calc."
 	},
 	"sidebar": {
+		"open": "Open sidebar",
+		"close": "Close sidebar",
 		"showSidebar": "Show Sidebar (also by clicking on the edge)",
 		"options": "Options",
 		"theme": {
