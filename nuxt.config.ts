@@ -28,4 +28,20 @@ export default defineNuxtConfig({
 			}
 		}
 	},
+
+	i18n: {
+		defaultLocale: "cs",
+		locales: [
+			{
+				code: "cs",
+				file: "cs.json",
+				name: "Čeština"
+			},
+			{
+				code: "en",
+				file: "en.json",
+				name: "English"
+			}
+		]
+	},
 })

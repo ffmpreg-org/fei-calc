@@ -1,0 +1,19 @@
+{
+	"test": "testování",
+	"sidebar": {
+		"showSidebar": "Zobrazit Sidebar (také kliknutím na okraj)",
+		"home": "Domů",
+		"to": "TO",
+		"to-1": "TO I",
+		"to-2": "TO II",
+		"general": "Obecné",
+		"options": "Možnosti",
+		"theme": {
+			"label": "Motiv Aplikace",
+			"light": "Světlý Motiv",
+			"dark": "Tmavý Motiv",
+			"system": "Systémový Motiv"
+		},
+		"language": "Jazyk Aplikace"
+	}
+}
