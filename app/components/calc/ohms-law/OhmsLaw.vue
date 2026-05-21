@@ -1,15 +1,15 @@
 <script setup lang="ts">
 import { ohmsLaw } from "~/utils/equations"
-import { fromBase, PREFIXES, toBase } from "~/utils/prefixes"
+import { fromBase, toBase } from "~/utils/prefixes"
 import CalculatorWrapper from "../CalculatorWrapper.vue"
 import { parseFrontmatter } from "comark"
 
 // Text logic
 
-const { locale, t } = useI18n()
-
 import cs from "./cs.md?raw"
 import en from "./en.md?raw"
+
+const { locale, t } = useI18n()
 
 const currentContent = computed(() => (locale.value === "cs" ? cs : en))
 const title = computed(() =>
@@ -89,33 +89,20 @@ const inputs = computed(() =>
 		:title="title"
 		:description="currentContent"
 	>
-		<LabeledInput
+		<PrefixedInput
 			v-for="input in inputs"
 			:key="input.field"
 			:label="input.label"
-		>
-			<UInput
-				:model-value="display[input.field]"
-				:model-modifiers="{ optional: true }"
-				type="number"
-				step="any"
-				:placeholder="input.placeholder"
-				:variant="
-					resultField === input.field && resultValue != null
-						? 'subtle'
-						: 'outline'
-				"
-				class="flex-1 max-w-42"
-				@update:model-value="setValue(input.field, $event)"
-			/>
-			<USelect
-				:model-value="prefixes[input.field]"
-				:items="PREFIXES"
-				class="max-w-14 w-full"
-				variant="ghost"
-				size="sm"
-				@update:model-value="setPrefix(input.field, $event)"
-			/>
-		</LabeledInput>
+			:model-value="display[input.field]"
+			:prefix="prefixes[input.field]"
+			:placeholder="input.placeholder"
+			:variant="
+				resultField === input.field && resultValue != null
+					? 'subtle'
+					: 'outline'
+			"
+			@update:model-value="setValue(input.field, $event)"
+			@update:prefix="setPrefix(input.field, $event)"
+		/>
 	</CalculatorWrapper>
 </template>
