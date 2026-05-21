@@ -29,8 +29,16 @@ export default defineNuxtConfig({
 			],
 			link: [
 				{ rel: "icon", href: "/favicon.ico", sizes: "48x48" },
-				{ rel: "icon", href: "/favicon.svg", sizes: "any", type: "image/svg+xml" },
-				{ rel: "apple-touch-icon", href: "/apple-touch-icon-180x180.png" }
+				{
+					rel: "icon",
+					href: "/favicon.svg",
+					sizes: "any",
+					type: "image/svg+xml"
+				},
+				{
+					rel: "apple-touch-icon",
+					href: "/apple-touch-icon-180x180.png"
+				}
 			]
 		}
 	},
@@ -69,6 +77,14 @@ export default defineNuxtConfig({
 	},
 
 	pwa: {
+		registerType: "autoUpdate",
+		experimental: {
+			enableWorkboxPayloadQueryParams: true
+		},
+		workbox: {
+			globPatterns: ["**/*.{html,js,css,json,png,svg,ico,woff2}"],
+			navigateFallback: "/"
+		},
 		manifest: {
 			name: "FEI Calc",
 			short_name: "FEI Calc",
@@ -81,26 +97,26 @@ export default defineNuxtConfig({
 			start_url: "/",
 			icons: [
 				{
-					src: 'pwa-64x64.png',
-					sizes: '64x64',
-					type: 'image/png'
+					src: "pwa-64x64.png",
+					sizes: "64x64",
+					type: "image/png"
 				},
 				{
-					src: 'pwa-192x192.png',
-					sizes: '192x192',
-					type: 'image/png'
+					src: "pwa-192x192.png",
+					sizes: "192x192",
+					type: "image/png"
 				},
 				{
-					src: 'pwa-512x512.png',
-					sizes: '512x512',
-					type: 'image/png',
-					purpose: 'any'
+					src: "pwa-512x512.png",
+					sizes: "512x512",
+					type: "image/png",
+					purpose: "any"
 				},
 				{
-					src: 'maskable-icon-512x512.png',
-					sizes: '512x512',
-					type: 'image/png',
-					purpose: 'maskable'
+					src: "maskable-icon-512x512.png",
+					sizes: "512x512",
+					type: "image/png",
+					purpose: "maskable"
 				}
 			]
 		}
