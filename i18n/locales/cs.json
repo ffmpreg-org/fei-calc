@@ -18,9 +18,26 @@
 	},
 	"pages": {
 		"home": "Domů",
-		"to": "TO",
-		"to-1": "TO I",
-		"to-2": "TO II",
+		"to": "TO (Teorie Obvodů)",
+		"to-1": "TO I (Teorie Obvodů I)",
+		"to-2": "TO II (Teorie Obvodů II)",
 		"general": "Obecné"
+	},
+	"units": {
+		"voltage": {
+			"name": "Napětí",
+			"unit": "V",
+			"symbol": "U"
+		},
+		"resistance": {
+			"name": "Odpor",
+			"unit": "Ω",
+			"symbol": "R"
+		},
+		"current": {
+			"name": "Proud",
+			"unit": "A",
+			"symbol": "I"
+		}
 	}
 }

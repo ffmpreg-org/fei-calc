@@ -18,9 +18,26 @@
 	},
 	"pages": {
 		"home": "Home",
-		"to": "TO",
-		"to-1": "TO I",
-		"to-2": "TO II",
+		"to": "TO (Circuit Theory)",
+		"to-1": "TO I (Circuit Theory I)",
+		"to-2": "TO II (Circuit Theory II)",
 		"general": "General"
+	},
+	"units": {
+		"voltage": {
+			"name": "Voltage",
+			"unit": "V",
+			"symbol": "U"
+		},
+		"resistance": {
+			"name": "Resistance",
+			"unit": "Ω",
+			"symbol": "R"
+		},
+		"current": {
+			"name": "Current",
+			"unit": "A",
+			"symbol": "I"
+		}
 	}
 }

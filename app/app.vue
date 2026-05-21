@@ -71,9 +71,14 @@ const navMenuItems = computed(() => [
 					v-model:open="isSidebarOpen"
 					collapsible="icon"
 					:style="{
-						'--sidebar-width-icon': '5.5rem'
+						'--sidebar-width-icon': '4rem',
+						'--sidebar-width': '18rem'
 					}"
 					:rail="true"
+					:ui="{
+						body: 'px-2',
+						footer: 'p-2'
+					}"
 				>
 					<template #default>
 						<UNavigationMenu
@@ -81,7 +86,7 @@ const navMenuItems = computed(() => [
 							orientation="vertical"
 							size="lg"
 							:ui="{
-								link: 'data-active:before:bg-primary-500/20 px-4 py-3 gap-2 min-w-14 overflow-hidden font-medium data-active:font-semibold',
+								link: 'data-active:before:bg-primary-500/20 px-3 py-3 gap-2 overflow-hidden font-medium data-active:font-semibold',
 								linkLeadingIcon: 'size-6',
 								linkLabel: 'text-base',
 								linkTrailing:
@@ -103,7 +108,7 @@ const navMenuItems = computed(() => [
 								variant="ghost"
 								color="neutral"
 								icon="i-lucide-menu"
-								class="px-4 py-3 gap-2 min-w-full overflow-hidden text-base"
+								class="px-3 py-3 gap-2 min-w-full overflow-hidden text-base"
 								:ui="{
 									leadingIcon: 'size-6'
 								}"
