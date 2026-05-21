@@ -1,6 +1,6 @@
 // https://nuxt.com/docs/api/configuration/nuxt-config
 export default defineNuxtConfig({
-	modules: ["@nuxt/eslint", "@nuxt/ui", "@nuxtjs/i18n"],
+	modules: ["@nuxt/eslint", "@nuxt/ui", "@nuxtjs/i18n", "@vite-pwa/nuxt"],
 
 	devtools: {
 		enabled: true
@@ -11,7 +11,10 @@ export default defineNuxtConfig({
 			title: "FEI Calc",
 			meta: [
 				{ charset: "utf-8" },
-				{ name: "viewport", content: "width=device-width, initial-scale=1" },
+				{
+					name: "viewport",
+					content: "width=device-width, initial-scale=1"
+				},
 				{
 					name: "theme-color",
 					content: "#14b8a6",
@@ -24,7 +27,11 @@ export default defineNuxtConfig({
 				},
 				{ name: "color-scheme", content: "light dark" }
 			],
-			link: [{ rel: "icon", type: "image/svg+xml", href: "/favicon.svg" }]
+			link: [
+				{ rel: "icon", href: "/favicon.ico", sizes: "48x48" },
+				{ rel: "icon", href: "/favicon.svg", sizes: "any", type: "image/svg+xml" },
+				{ rel: "apple-touch-icon", href: "/apple-touch-icon-180x180.png" }
+			]
 		}
 	},
 
@@ -59,5 +66,43 @@ export default defineNuxtConfig({
 				name: "English"
 			}
 		]
+	},
+
+	pwa: {
+		manifest: {
+			name: "FEI Calc",
+			short_name: "FEI Calc",
+			description: "FEI Calc",
+			theme_color: "#14b8a6",
+			background_color: "#ffffff",
+			display: "standalone",
+			orientation: "portrait",
+			scope: "/",
+			start_url: "/",
+			icons: [
+				{
+					src: 'pwa-64x64.png',
+					sizes: '64x64',
+					type: 'image/png'
+				},
+				{
+					src: 'pwa-192x192.png',
+					sizes: '192x192',
+					type: 'image/png'
+				},
+				{
+					src: 'pwa-512x512.png',
+					sizes: '512x512',
+					type: 'image/png',
+					purpose: 'any'
+				},
+				{
+					src: 'maskable-icon-512x512.png',
+					sizes: '512x512',
+					type: 'image/png',
+					purpose: 'maskable'
+				}
+			]
+		}
 	}
 })

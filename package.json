@@ -10,17 +10,20 @@
 		"lint": "eslint .",
 		"format": "prettier --write .",
 		"fix": "eslint . --fix && prettier --write .",
-		"typecheck": "nuxt typecheck"
+		"typecheck": "nuxt typecheck",
+		"generate:pwa-assets": "pwa-assets-generator --preset minimal-2023 public/favicon.svg"
 	},
 	"dependencies": {
 		"@iconify-json/lucide": "^1.2.108",
 		"@nuxt/ui": "^4.7.1",
 		"@nuxtjs/i18n": "10.3.0",
+		"@vite-pwa/nuxt": "1.1.1",
 		"nuxt": "^4.4.6",
 		"tailwindcss": "^4.3.0"
 	},
 	"devDependencies": {
 		"@nuxt/eslint": "^1.15.2",
+		"@vite-pwa/assets-generator": "^1.0.2",
 		"eslint": "^10.4.0",
 		"eslint-config-prettier": "^10.1.8",
 		"prettier": "3.8.3",

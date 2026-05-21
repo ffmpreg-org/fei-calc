@@ -63,6 +63,8 @@ const navMenuItems = computed(() => [
 
 <template>
 	<UApp :locale="uiLocale">
+		<NuxtPwaManifest />
+
 		<UMain>
 			<div class="flex flex-1">
 				<USidebar
