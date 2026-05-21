@@ -14,10 +14,14 @@
 		"generate:pwa-assets": "pwa-assets-generator --preset minimal-2023 public/favicon.svg"
 	},
 	"dependencies": {
+		"@comark/nuxt": "https://pkg.pr.new/@comark/nuxt@207",
+		"@comark/vue": "https://pkg.pr.new/@comark/vue@207",
 		"@iconify-json/lucide": "^1.2.108",
 		"@nuxt/ui": "^4.7.1",
 		"@nuxtjs/i18n": "10.3.0",
 		"@vite-pwa/nuxt": "1.1.1",
+		"comark": "https://pkg.pr.new/comark@207",
+		"katex": "^0.16.47",
 		"nuxt": "^4.4.6",
 		"tailwindcss": "^4.3.0"
 	},

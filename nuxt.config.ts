@@ -1,6 +1,12 @@
 // https://nuxt.com/docs/api/configuration/nuxt-config
 export default defineNuxtConfig({
-	modules: ["@nuxt/eslint", "@nuxt/ui", "@nuxtjs/i18n", "@vite-pwa/nuxt"],
+	modules: [
+		"@nuxt/eslint",
+		"@nuxt/ui",
+		"@nuxtjs/i18n",
+		"@vite-pwa/nuxt",
+		"@comark/nuxt"
+	],
 
 	devtools: {
 		enabled: true
@@ -43,7 +49,11 @@ export default defineNuxtConfig({
 		}
 	},
 
-	css: ["~/assets/css/main.css"],
+	css: ["~/assets/css/main.css", "katex/dist/katex.min.css"],
+
+	build: {
+		transpile: ["@comark/vue"]
+	},
 
 	routeRules: {
 		"/": { prerender: true }
@@ -118,6 +128,17 @@ export default defineNuxtConfig({
 					type: "image/png",
 					purpose: "maskable"
 				}
+			]
+		}
+	},
+
+	vite: {
+		optimizeDeps: {
+			include: [
+				"@vue/devtools-core",
+				"@vue/devtools-kit",
+				"@vueuse/core",
+				"comark"
 			]
 		}
 	}

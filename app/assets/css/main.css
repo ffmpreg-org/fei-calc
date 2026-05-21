@@ -28,3 +28,13 @@
 [data-side="left"][data-slot="content"] {
 	@apply max-w-72 min-w-52;
 }
+
+.comark-content.compact {
+	p {
+		@apply my-0 text-sm text-muted;
+	}
+
+	.katex-display {
+		@apply my-2;
+	}
+}
