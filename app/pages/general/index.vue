@@ -10,7 +10,7 @@ const { t } = useI18n()
 		:title="t('pages.general')"
 		:breadcrumbs="[{ to: '/', icon: 'i-lucide-home' }]"
 	>
-		<div class="grid gap-8 grid-cols-1 md:grid-cols-2">
+		<div class="grid min-w-0 w-full gap-8 grid-cols-1 md:grid-cols-2">
 			<OhmsLaw />
 			<SeriesParallel />
 		</div>

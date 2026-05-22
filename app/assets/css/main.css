@@ -30,12 +30,18 @@
 }
 
 .comark-content.compact {
+	/* Let wide math / tables stay inside padded flex parents (min-width: auto otherwise). */
+	@apply min-w-0 max-w-full;
+
 	p {
 		@apply my-0 text-sm text-muted;
 	}
 
+	/* overflow-x other than visible forces overflow-y away from "visible"
+	   (used value becomes auto), so a horizontal scrollbar + subpixel height
+	   can produce a tiny vertical scroll. clip keeps y non-scrollable. */
 	.katex-display {
-		@apply my-2;
+		@apply my-2 overflow-x-auto overflow-y-clip;
 	}
 }
 
