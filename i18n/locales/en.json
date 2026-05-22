@@ -48,6 +48,21 @@
 			"name": "Inductance",
 			"unit": "H",
 			"symbol": "L"
+		},
+		"frequency": {
+			"name": "Frequency",
+			"unit": "Hz",
+			"symbol": "f"
+		},
+		"period": {
+			"name": "Period",
+			"unit": "s",
+			"symbol": "T"
+		},
+		"angularFrequency": {
+			"name": "Angular Frequency",
+			"unit": "rad/s",
+			"symbol": "ω"
 		}
 	},
 	"result": "Result",

@@ -48,6 +48,21 @@
 			"name": "Indukčnost",
 			"unit": "H",
 			"symbol": "L"
+		},
+		"frequency": {
+			"name": "Frekvence",
+			"unit": "Hz",
+			"symbol": "f"
+		},
+		"period": {
+			"name": "Perioda",
+			"unit": "s",
+			"symbol": "T"
+		},
+		"angularFrequency": {
+			"name": "Úhlová frekvence",
+			"unit": "rad/s",
+			"symbol": "ω"
 		}
 	},
 	"component": "Součástka",
