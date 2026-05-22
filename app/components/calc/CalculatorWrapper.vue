@@ -19,7 +19,7 @@ defineProps<{
 				class="compact"
 			/>
 			<USeparator />
-			<div class="flex flex-col gap-2 h-full w-full justify-center">
+			<div class="flex flex-col gap-4 h-full w-full justify-center">
 				<slot name="default" />
 			</div>
 		</div>

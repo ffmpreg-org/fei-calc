@@ -214,7 +214,10 @@ const displayOutput = computed(() => {
 		class="series-parallel"
 	>
 		<div class="flex gap-x-4 gap-y-2 flex-wrap items-center">
-			<LabeledInput :label="t('component')">
+			<LabeledInput
+				:label="t('component')"
+				orientation="vertical"
+			>
 				<USelect
 					v-model="selectedComponent"
 					:items="components"
@@ -230,7 +233,10 @@ const displayOutput = computed(() => {
 					"
 				/>
 			</LabeledInput>
-			<LabeledInput :label="t('configuration')">
+			<LabeledInput
+				:label="t('configuration')"
+				orientation="vertical"
+			>
 				<UFieldGroup class="max-w-42 w-full">
 					<UButton
 						:label="t('configurations.series')"
@@ -256,7 +262,10 @@ const displayOutput = computed(() => {
 					/>
 				</UFieldGroup>
 			</LabeledInput>
-			<LabeledInput :label="`${t('count')} (${partCount})`">
+			<LabeledInput
+				:label="`${t('count')} (${partCount})`"
+				orientation="vertical"
+			>
 				<div class="flex gap-2 items-center">
 					<UButton
 						icon="i-lucide-minus"
