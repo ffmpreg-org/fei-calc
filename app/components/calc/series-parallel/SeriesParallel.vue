@@ -1,6 +1,6 @@
 <script setup lang="ts">
 import { parseFrontmatter } from "comark"
-import { roundTo } from "~/utils/equations"
+import { roundTo, sumBaseParts, sumBaseReciprocals } from "~/utils/equations"
 import { fromBase, toBase } from "~/utils/prefixes"
 import CalculatorWrapper from "../CalculatorWrapper.vue"
 
@@ -167,42 +167,33 @@ function basePartValue(index: number): number | undefined {
 		: toBase(value, partPrefixes.value[index] ?? "-")
 }
 
-function sumBaseParts(): number {
-	return partValues.value.reduce<number>(
-		(acc, _, i) => acc + (basePartValue(i) ?? 0),
-		0
-	)
-}
-
-function sumBaseReciprocals(): number {
-	return partValues.value.reduce<number>((acc, _, i) => {
-		const base = basePartValue(i)
-		return acc + (base != null ? 1 / base : 0)
-	}, 0)
-}
+const basePartValuesList = computed(() =>
+	partValues.value.map((_, i) => basePartValue(i))
+)
 
 // Series: R/L sum; 1/C = sum of reciprocals
 // Parallel: 1/R, 1/L = sum of reciprocals; C sums
 const outputValueBase = computed(() => {
+	const bases = basePartValuesList.value
 	if (selectedConfiguration.value === "series") {
 		if (
 			selectedComponent.value === "resistor" ||
 			selectedComponent.value === "inductor"
 		) {
-			return roundTo(sumBaseParts(), 4)
+			return roundTo(sumBaseParts(bases), 4)
 		}
 		if (selectedComponent.value === "capacitor") {
-			return roundTo(1 / sumBaseReciprocals(), 4)
+			return roundTo(1 / sumBaseReciprocals(bases), 4)
 		}
 	} else if (selectedConfiguration.value === "parallel") {
 		if (
 			selectedComponent.value === "resistor" ||
 			selectedComponent.value === "inductor"
 		) {
-			return roundTo(1 / sumBaseReciprocals(), 4)
+			return roundTo(1 / sumBaseReciprocals(bases), 4)
 		}
 		if (selectedComponent.value === "capacitor") {
-			return roundTo(sumBaseParts(), 4)
+			return roundTo(sumBaseParts(bases), 4)
 		}
 	}
 	return undefined
