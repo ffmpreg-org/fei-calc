@@ -2,6 +2,7 @@
 const props = withDefaults(
 	defineProps<{
 		label: string | undefined
+		leadingLabel?: string
 		orientation?: "horizontal" | "vertical"
 	}>(),
 	{
@@ -18,7 +19,15 @@ const rootClass = computed(() =>
 
 <template>
 	<div :class="rootClass">
-		<slot name="default" />
+		<div
+			v-if="leadingLabel"
+			class="text-sm text-muted whitespace-nowrap"
+		>
+			{{ leadingLabel }}
+		</div>
+		<div class="flex min-w-0 gap-2 items-center">
+			<slot name="default" />
+		</div>
 		<label
 			v-if="label"
 			class="text-sm text-muted whitespace-nowrap"

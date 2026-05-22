@@ -4,12 +4,14 @@ import { PREFIXES } from "~/utils/prefixes"
 withDefaults(
 	defineProps<{
 		label: string
+		leadingLabel?: string
 		modelValue?: number
 		prefix?: string
 		placeholder?: string
 		variant?: "outline" | "subtle"
 		readonly?: boolean
 		inputClass?: string
+		orientation?: "horizontal" | "vertical"
 	}>(),
 	{
 		prefix: "-",
@@ -25,7 +27,11 @@ const emit = defineEmits<{
 </script>
 
 <template>
-	<LabeledInput :label="label">
+	<LabeledInput
+		:label="label"
+		:orientation="orientation"
+		:leading-label="leadingLabel"
+	>
 		<UInput
 			:model-value="modelValue"
 			:model-modifiers="{ optional: true }"
@@ -40,7 +46,7 @@ const emit = defineEmits<{
 		<USelect
 			:model-value="prefix"
 			:items="PREFIXES"
-			class="max-w-14 w-full"
+			class="w-14 min-w-14 shrink-0 font-mono"
 			variant="ghost"
 			size="sm"
 			@update:model-value="emit('update:prefix', $event)"

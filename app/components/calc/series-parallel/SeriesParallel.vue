@@ -303,7 +303,8 @@ const displayOutput = computed(() => {
 		<USeparator />
 		<PrefixedInput
 			v-model:prefix="outputPrefix"
-			:label="t('result')"
+			:leading-label="`${t('result')}:`"
+			:label="`${componentToLabel(selectedComponent)} [${componentToUnit(selectedComponent)}]`"
 			:model-value="displayOutput"
 			:placeholder="componentToUnit(selectedComponent)"
 			readonly
