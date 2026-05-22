@@ -1,3 +1,7 @@
+import { createResolver } from "nuxt/kit"
+
+const { resolve } = createResolver(import.meta.url)
+
 // https://nuxt.com/docs/api/configuration/nuxt-config
 export default defineNuxtConfig({
 	modules: [
@@ -61,6 +65,17 @@ export default defineNuxtConfig({
 
 	compatibilityDate: "2025-01-15",
 
+	vite: {
+		optimizeDeps: {
+			include: [
+				"@vue/devtools-core",
+				"@vue/devtools-kit",
+				"@vueuse/core",
+				"comark"
+			]
+		}
+	},
+
 	eslint: {
 		config: {
 			stylistic: {
@@ -82,6 +97,15 @@ export default defineNuxtConfig({
 				code: "en",
 				file: "en.json",
 				name: "English"
+			}
+		]
+	},
+
+	icon: {
+		customCollections: [
+			{
+				prefix: "fei",
+				dir: resolve("./app/assets/icons/fei")
 			}
 		]
 	},
@@ -131,15 +155,4 @@ export default defineNuxtConfig({
 			]
 		}
 	},
-
-	vite: {
-		optimizeDeps: {
-			include: [
-				"@vue/devtools-core",
-				"@vue/devtools-kit",
-				"@vueuse/core",
-				"comark"
-			]
-		}
-	}
 })

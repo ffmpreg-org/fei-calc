@@ -90,15 +90,18 @@ const description = computed(() => {
 const components = computed(() => [
 	{
 		value: "resistor",
-		label: t("components.resistor")
+		label: t("components.resistor"),
+		icon: "i-fei-resistor"
 	},
 	{
 		value: "capacitor",
-		label: t("components.capacitor")
+		label: t("components.capacitor"),
+		icon: "i-fei-capacitor"
 	},
 	{
 		value: "inductor",
-		label: t("components.inductor")
+		label: t("components.inductor"),
+		icon: "i-fei-inductor"
 	}
 ])
 
@@ -224,7 +227,16 @@ const displayOutput = computed(() => {
 				<USelect
 					v-model="selectedComponent"
 					:items="components"
-					class="flex-1 max-w-42"
+					class="min-w-40"
+					:ui="{
+						item: 'items-center',
+						itemLeadingIcon: 'size-8',
+						content: 'min-w-fit'
+					}"
+					:icon="
+						components.find((c) => c.value === selectedComponent)
+							?.icon
+					"
 				/>
 			</LabeledInput>
 			<LabeledInput :label="t('configuration')">
