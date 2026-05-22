@@ -9,10 +9,12 @@ withDefaults(
 		placeholder?: string
 		variant?: "outline" | "subtle"
 		readonly?: boolean
+		inputClass?: string
 	}>(),
 	{
 		prefix: "-",
-		variant: "outline"
+		variant: "outline",
+		inputClass: "flex-1 max-w-42"
 	}
 )
 
@@ -32,7 +34,7 @@ const emit = defineEmits<{
 			:placeholder="placeholder"
 			:readonly="readonly"
 			:variant="variant"
-			class="flex-1 max-w-42"
+			:class="inputClass"
 			@update:model-value="emit('update:modelValue', $event)"
 		/>
 		<USelect
