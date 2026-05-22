@@ -9,3 +9,7 @@ export function ohmsLaw(voltage: number | undefined, resistance: number | undefi
 		return undefined
 	}
 }
+
+export function roundTo(value: number, precision: number): number {
+	return Math.round(value * Math.pow(10, precision)) / Math.pow(10, precision)
+}

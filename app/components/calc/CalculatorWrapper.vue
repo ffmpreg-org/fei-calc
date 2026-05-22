@@ -8,9 +8,9 @@ defineProps<{
 </script>
 
 <template>
-	<div class="flex gap-3 items-center w-full">
+	<div class="flex gap-3 items-start w-full">
 		<div class="h-full w-1 bg-primary rounded-full"></div>
-		<div class="flex flex-col gap-2 w-full">
+		<div class="flex flex-col gap-2 w-full h-full">
 			<h2 class="text-2xl font-bold">{{ title }}</h2>
 			<Comark
 				:markdown="description"
@@ -18,7 +18,10 @@ defineProps<{
 				:plugins="[math()]"
 				class="compact"
 			/>
-			<slot name="default" />
+			<USeparator />
+			<div class="flex flex-col gap-2 h-full w-full justify-center">
+				<slot name="default" />
+			</div>
 		</div>
 	</div>
 </template>

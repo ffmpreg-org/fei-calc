@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import { ohmsLaw } from "~/utils/equations"
+import { ohmsLaw, roundTo } from "~/utils/equations"
 import { fromBase, toBase } from "~/utils/prefixes"
 import CalculatorWrapper from "../CalculatorWrapper.vue"
 import { parseFrontmatter } from "comark"
@@ -62,7 +62,9 @@ const resultValue = computed(() => {
 		target === "resistance" ? undefined : baseValue("resistance"),
 		target === "current" ? undefined : baseValue("current")
 	)
-	return base == null ? undefined : fromBase(base, prefixes[target])
+	return base == null
+		? undefined
+		: roundTo(fromBase(base, prefixes[target]), 4)
 })
 
 const display = computed(
