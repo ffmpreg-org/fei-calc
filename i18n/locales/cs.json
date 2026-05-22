@@ -29,15 +29,38 @@
 			"unit": "V",
 			"symbol": "U"
 		},
+		"current": {
+			"name": "Proud",
+			"unit": "A",
+			"symbol": "I"
+		},
 		"resistance": {
 			"name": "Odpor",
 			"unit": "Ω",
 			"symbol": "R"
 		},
-		"current": {
-			"name": "Proud",
-			"unit": "A",
-			"symbol": "I"
+		"capacitance": {
+			"name": "Kapacita",
+			"unit": "F",
+			"symbol": "C"
+		},
+		"inductance": {
+			"name": "Indukčnost",
+			"unit": "H",
+			"symbol": "L"
 		}
-	}
+	},
+	"component": "Součástka",
+	"components": {
+		"resistor": "Rezistor",
+		"capacitor": "Kondenzátor",
+		"inductor": "Induktor"
+	},
+	"configuration": "Konfigurace",
+	"configurations": {
+		"series": "Sériová",
+		"parallel": "Paralelní"
+	},
+	"result": "Výsledek",
+	"count": "Počet"
 }

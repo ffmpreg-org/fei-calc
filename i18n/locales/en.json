@@ -38,6 +38,29 @@
 			"name": "Current",
 			"unit": "A",
 			"symbol": "I"
+		},
+		"capacitance": {
+			"name": "Capacitance",
+			"unit": "F",
+			"symbol": "C"
+		},
+		"inductance": {
+			"name": "Inductance",
+			"unit": "H",
+			"symbol": "L"
 		}
+	},
+	"result": "Result",
+	"count": "Count",
+	"component": "Component",
+	"components": {
+		"resistor": "Resistor",
+		"capacitor": "Capacitor",
+		"inductor": "Inductor"
+	},
+	"configuration": "Configuration",
+	"configurations": {
+		"series": "Series",
+		"parallel": "Parallel"
 	}
 }

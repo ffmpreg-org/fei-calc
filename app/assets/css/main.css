@@ -38,3 +38,9 @@
 		@apply my-2;
 	}
 }
+
+.series-parallel .comark-content.compact {
+	.katex-display {
+		@apply min-h-12;
+	}
+}
