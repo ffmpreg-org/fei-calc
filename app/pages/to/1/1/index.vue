@@ -13,5 +13,6 @@ const { t } = useI18n()
 	>
 		<CalcTo1Task1 />
 		<CalcTo1Task2 />
+		<CalcTo1Task3 />
 	</PageWrapper>
 </template>
