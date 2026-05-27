@@ -23,6 +23,8 @@
 		"to-2": "TO II (Teorie Obvodů II)",
 		"general": "Obecné"
 	},
+	"section": "Sekce",
+	"task": "Úloha",
 	"units": {
 		"voltage": {
 			"name": "Napětí",

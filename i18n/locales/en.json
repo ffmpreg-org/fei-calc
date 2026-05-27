@@ -23,6 +23,8 @@
 		"to-2": "TO II (Circuit Theory II)",
 		"general": "General"
 	},
+	"section": "Section",
+	"task": "Task",
 	"units": {
 		"voltage": {
 			"name": "Voltage",

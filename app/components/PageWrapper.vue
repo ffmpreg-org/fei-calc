@@ -17,7 +17,9 @@ usePageSeo(() => props.title)
 </script>
 
 <template>
-	<div class="flex min-w-0 flex-col gap-y-4 min-h-full p-4 w-full pb-32 md:pb-4">
+	<div
+		class="flex min-w-0 flex-col gap-y-4 min-h-full p-4 w-full pb-32 md:pb-4"
+	>
 		<div class="flex items-center justify-between gap-3 w-full">
 			<div class="flex items-center gap-2 min-w-0">
 				<slot name="breadcrumbs-leading" />
@@ -61,6 +63,8 @@ usePageSeo(() => props.title)
 			<USeparator class="flex-1 min-w-0" />
 			<slot name="separator-trailing" />
 		</div>
-		<slot name="default" />
+		<div class="flex flex-col gap-8">
+			<slot name="default" />
+		</div>
 	</div>
 </template>
