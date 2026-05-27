@@ -9,7 +9,8 @@ export default defineNuxtConfig({
 		"@nuxt/ui",
 		"@nuxtjs/i18n",
 		"@vite-pwa/nuxt",
-		"@comark/nuxt"
+		"@comark/nuxt",
+		"nuxt-svgo",
 	],
 
 	devtools: {
@@ -155,4 +156,8 @@ export default defineNuxtConfig({
 			]
 		}
 	},
+
+	svgo: {
+		customComponent: 'IconWrapper'
+	}
 })

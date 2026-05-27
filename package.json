@@ -23,7 +23,9 @@
 		"comark": "https://pkg.pr.new/comark@207",
 		"katex": "^0.16.47",
 		"nuxt": "^4.4.6",
-		"tailwindcss": "^4.3.0"
+		"nuxt-svgo": "5.3.0",
+		"tailwindcss": "^4.3.0",
+		"vue": ">=3.2.13"
 	},
 	"devDependencies": {
 		"@nuxt/eslint": "^1.15.2",
