@@ -1,7 +1,6 @@
 <script setup lang="ts">
 import { ohmsLaw, roundTo } from "~/utils/equations"
 import { fromBase, toBase } from "~/utils/prefixes"
-import CalculatorWrapper from "../CalculatorWrapper.vue"
 import { parseFrontmatter } from "comark"
 
 // Text logic
@@ -87,7 +86,7 @@ const inputs = computed(() =>
 </script>
 
 <template>
-	<CalculatorWrapper
+	<CalcWrapper
 		:title="title"
 		:description="currentContent"
 	>
@@ -106,5 +105,5 @@ const inputs = computed(() =>
 			@update:model-value="setValue(input.field, $event)"
 			@update:prefix="setPrefix(input.field, $event)"
 		/>
-	</CalculatorWrapper>
+	</CalcWrapper>
 </template>

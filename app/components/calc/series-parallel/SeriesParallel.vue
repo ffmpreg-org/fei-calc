@@ -2,7 +2,6 @@
 import { parseFrontmatter } from "comark"
 import { roundTo, sumBaseParts, sumBaseReciprocals } from "~/utils/equations"
 import { fromBase, toBase } from "~/utils/prefixes"
-import CalculatorWrapper from "../CalculatorWrapper.vue"
 
 import cs from "./cs.md?raw"
 import en from "./en.md?raw"
@@ -208,7 +207,7 @@ const displayOutput = computed(() => {
 </script>
 
 <template>
-	<CalculatorWrapper
+	<CalcWrapper
 		:title="title"
 		:description="description"
 		class="series-parallel"
@@ -310,5 +309,5 @@ const displayOutput = computed(() => {
 			readonly
 			variant="subtle"
 		/>
-	</CalculatorWrapper>
+	</CalcWrapper>
 </template>

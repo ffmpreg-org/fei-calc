@@ -6,7 +6,6 @@ import {
 	roundTo
 } from "~/utils/equations"
 import { fromBase, toBase } from "~/utils/prefixes"
-import CalculatorWrapper from "../CalculatorWrapper.vue"
 
 import cs from "./cs.md?raw"
 import en from "./en.md?raw"
@@ -183,7 +182,7 @@ const reactanceDisplay = computed(() => {
 </script>
 
 <template>
-	<CalculatorWrapper
+	<CalcWrapper
 		:title="title"
 		:description="currentContent"
 	>
@@ -245,5 +244,5 @@ const reactanceDisplay = computed(() => {
 			readonly
 			variant="subtle"
 		/>
-	</CalculatorWrapper>
+	</CalcWrapper>
 </template>
