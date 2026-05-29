@@ -14,6 +14,9 @@ jobs:
         runs-on: ubuntu-latest
 
         steps:
+            - name: Checkout
+              uses: actions/checkout@v6
+
             - name: Install git-filter-repo
               run: pipx install git-filter-repo
 
@@ -21,14 +24,10 @@ jobs:
               run: |
                   git clone --mirror "https://x-access-token:${{ github.token }}@github.com/${{ github.repository }}.git" private.git
 
-            - name: Copy mailmap
-              run: |
-                  cp private.git/.github/public-mirror.mailmap public-mirror.mailmap
-
             - name: Rewrite author identity
               run: |
                   cd private.git
-                  git filter-repo --force --mailmap ../public-mirror.mailmap
+                  git filter-repo --force --mailmap ../.github/public-mirror.mailmap
 
             - name: Push to public mirror
               env:
