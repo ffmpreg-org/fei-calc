@@ -1,41 +1,20 @@
 <script setup lang="ts">
 import Schematic from "~/assets/schematics/section-1-2.svg"
 import { roundTo } from "~/utils/equations"
-import { fromBase, toBase } from "~/utils/prefixes"
-import { parseFrontmatter } from "comark"
 
 import cs from "./cs.md?raw"
 import en from "./en.md?raw"
 
-const { locale, t } = useI18n()
+const { t } = useI18n()
 
-const currentContent = computed(() => (locale.value === "cs" ? cs : en))
-const title = computed(() =>
-	String(parseFrontmatter(currentContent.value).data.title ?? "")
-)
+const { currentContent, title } = useLocalizedMarkdown({ cs, en })
 
 const PRECISION = 4
 
-const values = reactive<Record<string, number | undefined>>({
-	U_o1: undefined,
-	U_o2: undefined,
-	U_o3: undefined,
-	R: undefined
-})
-
-const prefixes = reactive<Record<string, string>>({
-	U_o1: "-",
-	U_o2: "-",
-	U_o3: "-",
-	R: "-"
-})
-
-const resultPrefix = ref("-")
-
-function baseValue(field: keyof typeof values): number | undefined {
-	const value = values[field]
-	return value == null ? undefined : toBase(value, prefixes[field] ?? "-")
-}
+type Field = "U_o1" | "U_o2" | "U_o3" | "R" | "I"
+const fields: Field[] = ["U_o1", "U_o2", "U_o3", "R", "I"]
+const { values, prefixes, setValue, setPrefix, baseValue, displayFromBase } =
+	usePrefixedValues(fields)
 
 const resultValueBase = computed((): number | undefined => {
 	const u1 = baseValue("U_o1")
@@ -47,16 +26,8 @@ const resultValueBase = computed((): number | undefined => {
 })
 
 const displayResult = computed(() => {
-	const base = resultValueBase.value
-	return base == null
-		? undefined
-		: roundTo(fromBase(base, resultPrefix.value), PRECISION)
+	return displayFromBase("I", resultValueBase.value, PRECISION)
 })
-
-function setPrefix(field: string, prefix: string | undefined) {
-	if (!prefix || prefixes[field] === prefix) return
-	prefixes[field] = prefix
-}
 </script>
 
 <template>
@@ -70,33 +41,33 @@ function setPrefix(field: string, prefix: string | undefined) {
 					:label="`U o1 [${t('units.voltage.unit')}]`"
 					:model-value="values.U_o1"
 					:prefix="prefixes.U_o1"
-					@update:model-value="values.U_o1 = $event"
+					@update:model-value="setValue('U_o1', $event)"
 					@update:prefix="setPrefix('U_o1', $event)"
 				/>
 				<PrefixedInput
 					:label="`U o2 [${t('units.voltage.unit')}]`"
 					:model-value="values.U_o2"
 					:prefix="prefixes.U_o2"
-					@update:model-value="values.U_o2 = $event"
+					@update:model-value="setValue('U_o2', $event)"
 					@update:prefix="setPrefix('U_o2', $event)"
 				/>
 				<PrefixedInput
 					:label="`U o3 [${t('units.voltage.unit')}]`"
 					:model-value="values.U_o3"
 					:prefix="prefixes.U_o3"
-					@update:model-value="values.U_o3 = $event"
+					@update:model-value="setValue('U_o3', $event)"
 					@update:prefix="setPrefix('U_o3', $event)"
 				/>
 				<PrefixedInput
 					:label="`${t('units.resistance.symbol')} [${t('units.resistance.unit')}]`"
 					:model-value="values.R"
 					:prefix="prefixes.R"
-					@update:model-value="values.R = $event"
+					@update:model-value="setValue('R', $event)"
 					@update:prefix="setPrefix('R', $event)"
 				/>
 				<USeparator />
 				<PrefixedInput
-					v-model:prefix="resultPrefix"
+					v-model:prefix="prefixes.I"
 					:leading-label="`${t('result')}:`"
 					:label="`${t('units.current.symbol')} [${t('units.current.unit')}]`"
 					:placeholder="t('units.current.unit')"

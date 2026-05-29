@@ -1,54 +1,29 @@
 <script setup lang="ts">
 import { ohmsLaw, roundTo } from "~/utils/equations"
-import { fromBase, toBase } from "~/utils/prefixes"
-import { parseFrontmatter } from "comark"
+import { fromBase } from "~/utils/prefixes"
 
 // Text logic
 
 import cs from "./cs.md?raw"
 import en from "./en.md?raw"
 
-const { locale, t } = useI18n()
+const { t } = useI18n()
 
-const currentContent = computed(() => (locale.value === "cs" ? cs : en))
-const title = computed(() =>
-	String(parseFrontmatter(currentContent.value).data.title ?? "")
-)
+const { currentContent, title } = useLocalizedMarkdown({ cs, en })
 
 // Math logic
 
 type Field = "voltage" | "resistance" | "current"
 const fields: Field[] = ["voltage", "resistance", "current"]
 
-const values = reactive<Record<Field, number | undefined>>({
-	voltage: undefined,
-	resistance: undefined,
-	current: undefined
-})
-
-const prefixes = reactive<Record<Field, string>>({
-	voltage: "-",
-	resistance: "-",
-	current: "-"
-})
-
-const lastEdited = ref<[Field, Field]>(["voltage", "resistance"])
+const prefixed = usePrefixedValues(fields)
+const { values, prefixes, setPrefix, baseValue } = prefixed
+const recent = useRecentFields<Field>(["voltage", "resistance"])
+const { lastEdited } = recent
 
 function setValue(field: Field, value: number | undefined) {
-	values[field] = value
-	const [a, b] = lastEdited.value
-	if (field === a) return
-	lastEdited.value = field === b ? [b, a] : [field, a]
-}
-
-function setPrefix(field: Field, prefix: string | undefined) {
-	if (!prefix || prefixes[field] === prefix) return
-	prefixes[field] = prefix
-}
-
-function baseValue(field: Field): number | undefined {
-	const value = values[field]
-	return value == null ? undefined : toBase(value, prefixes[field])
+	prefixed.setValue(field, value)
+	recent.markEdited(field)
 }
 
 const resultField = computed(
