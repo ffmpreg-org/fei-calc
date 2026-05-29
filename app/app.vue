@@ -49,7 +49,11 @@ const navMenuItems = computed(() => [
 				children: [
 					{
 						label: `${t("section")} 1`,
-						href: "/to/1/1"
+						href: "/to/1/section/1"
+					},
+					{
+						label: `${t("section")} 2`,
+						href: "/to/1/section/2"
 					}
 				]
 			},
