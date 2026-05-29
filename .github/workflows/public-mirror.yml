@@ -25,9 +25,12 @@ jobs:
                   git clone --mirror "https://x-access-token:${{ github.token }}@github.com/${{ github.repository }}.git" private.git
 
             - name: Rewrite author identity
+              env:
+                  PUBLIC_MIRROR_MAILMAP: ${{ secrets.PUBLIC_MIRROR_MAILMAP }}
               run: |
+                  printf '%s\n' "${PUBLIC_MIRROR_MAILMAP}" > public-mirror.mailmap
                   cd private.git
-                  git filter-repo --force --mailmap ../.github/public-mirror.mailmap
+                  git filter-repo --force --mailmap ../public-mirror.mailmap --path .github/public-mirror.mailmap --invert-paths
 
             - name: Push to public mirror
               env:
