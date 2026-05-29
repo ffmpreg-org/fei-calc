@@ -35,4 +35,5 @@ jobs:
               run: |
                   cd private.git
                   git remote add public "https://x-access-token:${PUBLIC_MIRROR_TOKEN}@github.com/ffmpreg-org/fei-calc.git"
-                  git push public --mirror --force
+                  git push public --force "+refs/heads/*:refs/heads/*"
+                  git push public --force "+refs/tags/*:refs/tags/*"
