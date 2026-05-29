@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import Schematic from "~/assets/schematics/section-1-3.svg"
+import Schematic from "~/assets/schematics/section-2-1.svg"
 import { roundTo } from "~/utils/equations"
 
 import cs from "./cs.md?raw"
