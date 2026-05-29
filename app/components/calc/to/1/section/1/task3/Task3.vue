@@ -90,7 +90,7 @@ const displayResult = computed(() => {
 			</div>
 			<template #trailing>
 				<Schematic
-					class="xl:max-w-1/3 max-w-2/3 md:max-w-1/2 max-h-80"
+					class="lg:max-w-1/3 max-w-2/3 md:max-w-1/2 max-h-80"
 				/>
 			</template>
 		</CalcWrapper>
