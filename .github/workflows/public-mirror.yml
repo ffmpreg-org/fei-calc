@@ -1,0 +1,39 @@
+name: public mirror
+
+on:
+    push:
+        branches:
+            - "**"
+        tags:
+            - "**"
+    workflow_dispatch:
+
+jobs:
+    mirror:
+        if: github.repository == 'VitroidFPV/fei-calc'
+        runs-on: ubuntu-latest
+
+        steps:
+            - name: Install git-filter-repo
+              run: pipx install git-filter-repo
+
+            - name: Clone private repo as mirror
+              run: |
+                  git clone --mirror "https://x-access-token:${{ github.token }}@github.com/${{ github.repository }}.git" private.git
+
+            - name: Copy mailmap
+              run: |
+                  cp private.git/.github/public-mirror.mailmap public-mirror.mailmap
+
+            - name: Rewrite author identity
+              run: |
+                  cd private.git
+                  git filter-repo --force --mailmap ../public-mirror.mailmap
+
+            - name: Push to public mirror
+              env:
+                  PUBLIC_MIRROR_TOKEN: ${{ secrets.PUBLIC_MIRROR_TOKEN }}
+              run: |
+                  cd private.git
+                  git remote set-url origin "https://x-access-token:${PUBLIC_MIRROR_TOKEN}@github.com/ffmpreg-org/fei-calc.git"
+                  git push --mirror --force
