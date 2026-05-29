@@ -11,5 +11,6 @@ const { t } = useI18n()
 			{ to: '/to/1', label: t('pages.to-1') }
 		]"
 	>
+		<CalcTo1Section2Task1 />
 	</PageWrapper>
 </template>
