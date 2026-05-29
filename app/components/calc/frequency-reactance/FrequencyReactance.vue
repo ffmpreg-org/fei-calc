@@ -1,5 +1,4 @@
 <script setup lang="ts">
-import { parseFrontmatter } from "comark"
 import {
 	frequencyTriple,
 	reactance as calcReactance,
@@ -10,51 +9,27 @@ import { fromBase, toBase } from "~/utils/prefixes"
 import cs from "./cs.md?raw"
 import en from "./en.md?raw"
 
-const { locale, t } = useI18n()
+const { t } = useI18n()
 
-const currentContent = computed(() => (locale.value === "cs" ? cs : en))
-const title = computed(() =>
-	String(parseFrontmatter(currentContent.value).data.title ?? "")
-)
+const { currentContent, title } = useLocalizedMarkdown({ cs, en })
 
 type Field = "frequency" | "period" | "angularFrequency"
 const fields: Field[] = ["frequency", "period", "angularFrequency"]
 
 const PRECISION = 4
 
-const values = reactive<Record<Field, number | undefined>>({
-	frequency: undefined,
-	period: undefined,
-	angularFrequency: undefined
-})
-
-const prefixes = reactive<Record<Field, string>>({
-	frequency: "-",
-	period: "-",
-	angularFrequency: "-"
-})
-
-const lastEdited = ref<[Field, Field]>(["frequency", "period"])
+const prefixed = usePrefixedValues(fields)
+const { values, prefixes, setPrefix, baseValue } = prefixed
+const recent = useRecentFields<Field>(["frequency", "period"])
+const { lastEdited } = recent
 
 function setValue(field: Field, value: number | undefined) {
-	values[field] = value
-	const [a, b] = lastEdited.value
-	if (field === a) return
-	lastEdited.value = field === b ? [b, a] : [field, a]
+	prefixed.setValue(field, value)
+	recent.markEdited(field)
 }
 
-function setPrefix(field: Field, prefix: string | undefined) {
-	if (!prefix || prefixes[field] === prefix) return
-	prefixes[field] = prefix
-}
-
-function baseValue(field: Field): number | undefined {
-	const value = values[field]
-	return value == null ? undefined : toBase(value, prefixes[field])
-}
-
-function toDisplay(field: Field, base: number): number {
-	return roundTo(fromBase(base, prefixes[field]), PRECISION)
+function toDisplay(field: Field, base: number): number | undefined {
+	return prefixed.displayFromBase(field, base, PRECISION)
 }
 
 function filledFields(): Field[] {
@@ -118,38 +93,14 @@ const inputs = computed(() =>
 	}))
 )
 
-const components = computed(() => [
-	{
-		value: "capacitor",
-		label: t("components.capacitor"),
-		icon: "i-fei-capacitor"
-	},
-	{
-		value: "inductor",
-		label: t("components.inductor"),
-		icon: "i-fei-inductor"
-	}
-])
+type ReactanceComponent = "capacitor" | "inductor"
+const {
+	options: components,
+	symbolOf,
+	unitOf
+} = useElectricalComponentMeta(["capacitor", "inductor"] as const)
 
-const selectedComponent = ref<string>("capacitor")
-
-function componentToLabel(component: string) {
-	switch (component) {
-		case "capacitor":
-			return t("units.capacitance.symbol")
-		case "inductor":
-			return t("units.inductance.symbol")
-	}
-}
-
-function componentToUnit(component: string) {
-	switch (component) {
-		case "capacitor":
-			return t("units.capacitance.unit")
-		case "inductor":
-			return t("units.inductance.unit")
-	}
-}
+const selectedComponent = ref<ReactanceComponent>("capacitor")
 
 const componentValue = ref<number | undefined>(undefined)
 const componentPrefix = ref("-")
@@ -228,8 +179,8 @@ const reactanceDisplay = computed(() => {
 			<PrefixedInput
 				v-model:prefix="componentPrefix"
 				orientation="vertical"
-				:label="`${componentToLabel(selectedComponent)} [${componentToUnit(selectedComponent)}]`"
-				:placeholder="componentToUnit(selectedComponent)"
+				:label="`${symbolOf(selectedComponent)} [${unitOf(selectedComponent)}]`"
+				:placeholder="unitOf(selectedComponent)"
 				:model-value="componentValue"
 				@update:model-value="setComponentValue"
 			/>

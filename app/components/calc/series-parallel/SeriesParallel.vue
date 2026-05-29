@@ -1,30 +1,19 @@
 <script setup lang="ts">
-import { parseFrontmatter } from "comark"
+import type { ElectricalComponent } from "~/composables/useElectricalComponentMeta"
 import { roundTo, sumBaseParts, sumBaseReciprocals } from "~/utils/equations"
 import { fromBase, toBase } from "~/utils/prefixes"
 
 import cs from "./cs.md?raw"
 import en from "./en.md?raw"
 
-const { locale, t } = useI18n()
+const { t } = useI18n()
 
-const currentContent = computed(() => (locale.value === "cs" ? cs : en))
-const title = computed(() =>
-	String(parseFrontmatter(currentContent.value).data.title ?? "")
-)
-
-function componentSymbol(component: string): string {
-	switch (component) {
-		case "resistor":
-			return "R"
-		case "capacitor":
-			return "C"
-		case "inductor":
-			return "L"
-		default:
-			return "X"
-	}
-}
+const { title, body } = useLocalizedMarkdown({ cs, en })
+const {
+	options: components,
+	symbolOf,
+	unitOf
+} = useElectricalComponentMeta(["resistor", "capacitor", "inductor"] as const)
 
 const MAX_EQUATION_TERMS = 8
 
@@ -49,7 +38,7 @@ function buildEquationTerms(sym: string, count: number, reciprocal: boolean) {
 }
 
 const equationLatex = computed(() => {
-	const sym = componentSymbol(selectedComponent.value)
+	const sym = symbolOf(selectedComponent.value)
 	const terms = buildEquationTerms(sym, partCount.value, false)
 	const recipTerms = buildEquationTerms(sym, partCount.value, true)
 	const eq = `${sym}`
@@ -80,31 +69,12 @@ const equationLatex = computed(() => {
 })
 
 const description = computed(() => {
-	const body = parseFrontmatter(currentContent.value).content.trim()
 	const eq = equationLatex.value
-	if (!eq) return body
-	return `${body}\n\n$$\n${eq}\n$$`
+	if (!eq) return body.value
+	return `${body.value}\n\n$$\n${eq}\n$$`
 })
 
-const components = computed(() => [
-	{
-		value: "resistor",
-		label: t("components.resistor"),
-		icon: "i-fei-resistor"
-	},
-	{
-		value: "capacitor",
-		label: t("components.capacitor"),
-		icon: "i-fei-capacitor"
-	},
-	{
-		value: "inductor",
-		label: t("components.inductor"),
-		icon: "i-fei-inductor"
-	}
-])
-
-const selectedComponent = ref<string>("resistor")
+const selectedComponent = ref<ElectricalComponent>("resistor")
 
 const selectedConfiguration = ref<string>("series")
 
@@ -126,28 +96,6 @@ const incrementPartCount = () => {
 	partValues.value = [...partValues.value, undefined]
 	partPrefixes.value = [...partPrefixes.value, "-"]
 	partCount.value++
-}
-
-function componentToLabel(component: string) {
-	switch (component) {
-		case "resistor":
-			return t("units.resistance.symbol")
-		case "capacitor":
-			return t("units.capacitance.symbol")
-		case "inductor":
-			return t("units.inductance.symbol")
-	}
-}
-
-function componentToUnit(component: string) {
-	switch (component) {
-		case "resistor":
-			return t("units.resistance.unit")
-		case "capacitor":
-			return t("units.capacitance.unit")
-		case "inductor":
-			return t("units.inductance.unit")
-	}
 }
 
 function setPartValue(index: number, value: number | undefined) {
@@ -289,10 +237,10 @@ const displayOutput = computed(() => {
 			<PrefixedInput
 				v-for="i in partCount"
 				:key="i"
-				:label="`${componentToLabel(selectedComponent)}${i}`"
+				:label="`${symbolOf(selectedComponent)}${i}`"
 				:model-value="partValues[i - 1]"
 				:prefix="partPrefixes[i - 1]"
-				:placeholder="componentToUnit(selectedComponent)"
+				:placeholder="unitOf(selectedComponent)"
 				input-class="flex-1 max-w-42"
 				class="w-full"
 				@update:model-value="setPartValue(i - 1, $event)"
@@ -303,9 +251,9 @@ const displayOutput = computed(() => {
 		<PrefixedInput
 			v-model:prefix="outputPrefix"
 			:leading-label="`${t('result')}:`"
-			:label="`${componentToLabel(selectedComponent)} [${componentToUnit(selectedComponent)}]`"
+			:label="`${symbolOf(selectedComponent)} [${unitOf(selectedComponent)}]`"
 			:model-value="displayOutput"
-			:placeholder="componentToUnit(selectedComponent)"
+			:placeholder="unitOf(selectedComponent)"
 			readonly
 			variant="subtle"
 		/>
