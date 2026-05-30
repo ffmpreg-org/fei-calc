@@ -25,6 +25,7 @@
 	},
 	"section": "Sekce",
 	"task": "Úloha",
+	"variant": "Varianta",
 	"units": {
 		"voltage": {
 			"name": "Napětí",

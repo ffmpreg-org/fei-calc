@@ -25,6 +25,7 @@
 	},
 	"section": "Section",
 	"task": "Task",
+	"variant": "Variant",
 	"units": {
 		"voltage": {
 			"name": "Voltage",
