@@ -95,8 +95,8 @@ const activeTrailingSlot = computed(
 					v-model="selectedTab"
 					:items="tabItems"
 					:content="false"
-					size="sm"
 					class="w-full"
+					variant="link"
 				/>
 				<Comark
 					:markdown="activeDescription"
